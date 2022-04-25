@@ -33,6 +33,7 @@ const {
   useSingleFileAuthState,
   DisconnectReason
 } = await import('@adiwajshing/baileys')
+import { createServer } from "http"
 
 const { CONNECTING } = ws
 const { chain } = lodash
@@ -47,6 +48,8 @@ global.timestamp = {
   start: new Date
 }
 
+createServer((_, res) => res.end("Uptime! Haruno at Heroku"))
+.listen(process.env.PORT || 5000)
 const __dirname = global.__dirname(import.meta.url)
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
@@ -57,7 +60,6 @@ global.db = new Low(
     new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
       (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
-      (await import('./server.js')).default(global.conn, PORT)
 )
 
 
