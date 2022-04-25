@@ -101,7 +101,7 @@ const connectionOptions = {
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 
-await import('./server.js').default(global.conn, PORT)
+(await import('./server.js')).default(global.conn, PORT)
 
 if (!opts['test']) {
   setInterval(async () => {
