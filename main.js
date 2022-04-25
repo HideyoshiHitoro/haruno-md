@@ -48,10 +48,12 @@ global.timestamp = {
   start: new Date
 }
 
-createServer((_, res) => res.end("Uptime! Haruno at Heroku"))
-.listen(process.env.PORT || 5000)
+// createServer((_, res) => res.end("Uptime! Haruno at Heroku"))
+// .listen(process.env.PORT || 5000)
 
 const __dirname = global.__dirname(import.meta.url)
+
+opts.db = 'mongodb+srv://haruno:harunoadmin@haruno.agdrq.mongodb.net/haruno?retryWrites=true&w=majority'
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
