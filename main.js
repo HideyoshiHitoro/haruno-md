@@ -57,6 +57,7 @@ global.db = new Low(
     new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
       (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
+      (await import('./server.js')).default(global.conn, PORT)
 )
 
 
