@@ -48,8 +48,8 @@ global.timestamp = {
   start: new Date
 }
 
-createServer((_, res) => res.end("Uptime! Haruno at Heroku"))
-.listen(process.env.PORT || 5000)
+// createServer((_, res) => res.end("Uptime! Haruno at Heroku"))
+// .listen(process.env.PORT || 5000)
 
 (await import('./server.js')).default(global.conn, PORT)
 
