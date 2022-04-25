@@ -51,8 +51,6 @@ global.timestamp = {
 // createServer((_, res) => res.end("Uptime! Haruno at Heroku"))
 // .listen(process.env.PORT || 5000)
 
-(await import('./server.js')).default(global.conn, PORT)
-
 const __dirname = global.__dirname(import.meta.url)
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
@@ -102,6 +100,8 @@ const connectionOptions = {
 
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
+
+await import('./server.js').default(global.conn, PORT)
 
 if (!opts['test']) {
   setInterval(async () => {
