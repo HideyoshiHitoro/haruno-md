@@ -11,7 +11,7 @@ import {
 } from 'fs'
 
 let handler = async(m, { conn, usedPrefix, command, args }) => {
-	if(!args[0]) throw `Masukkan kode nya!\n\nContoh: ${usedPrefix + command} 257326`
+	if(!args[0]) throw `Masukkan kode nya!\n\nContoh: ${usedPrefix + command} 257326\n\nKode adalah kode dari doujin itu.`
 	if (!db.data.settings[conn.user.jid].nhentai) throw `Fitur ini tidak aktif. https://hiken.xyz/v/${args[0]}`
 	let count = 0
 	let ResultPdf = []
